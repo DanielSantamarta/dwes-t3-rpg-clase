@@ -1,20 +1,15 @@
 <?php
-class character{
+class Character{
     protected $id;
     protected $name;
     protected $description;
     protected $health;
-    protected $stregth;
+    protected $strength;
     protected $defense;
     protected $image;
 
     
 
-
-
-
-
-    
     /**
      * Get the value of id
      */ 
@@ -96,21 +91,21 @@ class character{
     }
 
     /**
-     * Get the value of stregth
+     * Get the value of strength
      */ 
-    public function getStregth()
+    public function getStrength()
     {
-        return $this->stregth;
+        return $this->strength;
     }
 
     /**
-     * Set the value of stregth
+     * Set the value of strength
      *
      * @return  self
      */ 
-    public function setStregth($stregth)
+    public function setStrength($strength)
     {
-        $this->stregth = $stregth;
+        $this->strength = $strength;
 
         return $this;
     }
