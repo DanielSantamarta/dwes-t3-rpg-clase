@@ -3,15 +3,21 @@
 require_once("../config/db.php");
 require_once("../model/Character.php");
 
+$characters =[];
+try{
+    $stmt = $db->query("SELECT * FROM characters");
+    $characters=$stmt -> fetchAll(PDO::FETCH_ASSOC);
+}catch(PDOException $e){
+    echo "Error al leer en base de datos: ". $e->getMessage();
+}
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $character = new Character($db);
     $character->setName($_POST['name'])
               ->setDescription($_POST['description'])
               ->setHealth($_POST['health'])
               ->setStrength($_POST['strength'])
               ->setDefense($_POST['defense']);
-
     if($character->save()){
         echo "Personaje guardado con exito";
     }
@@ -27,36 +33,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Crea tu personaje</title>
 </head>
 <body>
+    <h1>Menu: </h1>
+    <?php include('partials/_menu.php') ?>
     <h1>Crea tu personaje</h1>
-    <form action = "create_character.php" method = "POST">
+    <form action = <?=$_SERVER['PHP_SELF']?>> 
+        <label for="nameInput">Nombre:</label>
+        <input type = "text" name = "name" id = "nameInput">
 
-        <div>
-            <label for="nameInput">Nombre:</label>
-            <input type = "text" name = "name" id = "nameInput">
-        </div>
+        <label for="descriptionInput">Descripción:</label>
+        <input type = "text" name = "description" id = "descriptionInput">
 
-        <div>
-            <label for="descriptionInput">Descripción:</label>
-            <input type = "text" name = "description" id = "descriptionInput">
-        </div>
+        <label for="healthInput">Vida:</label>
+        <input type = "number" name = "health" id = "healthInput" value="100">
 
-        <div>
-            <label for="healthInput">Puntos de Vida:</label>
-            <input type = "number" name = "health" id = "healthInput">
-        </div>
+        <label for="strengthInput">Fuerza:</label>
+        <input type = "nummber" name = "strength" id = "strengthInput" value="10">
 
-        <div>
-            <label for="strenghtInput">Puntos de Fuerza:</label>
-            <input type = "number" name = "strength" id = "strenghtInput">
-        </div>
-            
-        <div>
-            <label for="defenseInput">Puntos de Defensa:</label>
-            <input type = "number" name = "defense" id = "defenseInput">
-        </div>
+        <label for="defenseInput">Defensa:</label>
+        <input type = "number" name = "defense" id = "defenseInput" value="10">
 
         <button type="submit">Crear personaje</button>
     </form>
     
+    <h1>Personajes creados: </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Salud</th>
+                <th>Fuerza</th>
+                <th>Defensa</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($characters as $character) :?>
+                <tr>
+                    <td>img</td>
+                    <td><?= $character['name']?></td>
+                    <td><?= $character['description']?></td>
+                    <td><?= $character['health']?></td>
+                    <td><?= $character['strength']?></td>
+                    <td><?= $character['defense']?></td>
+                    <td>Actions</td>
+                </tr>
+            <?php endforeach; ?>    
+        </tbody>
+    </table>
 </body>
 </html>
