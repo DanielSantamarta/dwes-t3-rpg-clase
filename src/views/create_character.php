@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     </form>
     
     <h1>Personajes creados: </h1>
-    <table>
+    <table border="1" style="text-align:center; border-collapse: collapse" >
         <thead>
             <tr>
                 <th>Imagen</th>
