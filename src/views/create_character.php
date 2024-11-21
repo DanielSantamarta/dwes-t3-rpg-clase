@@ -36,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <h1>Menu: </h1>
     <?php include('partials/_menu.php') ?>
     <h1>Crea tu personaje</h1>
-    <form action = <?=$_SERVER['PHP_SELF']?>> 
+    <form action = <?=$_SERVER['PHP_SELF']?> method="POST"> 
         <label for="nameInput">Nombre:</label>
         <input type = "text" name = "name" id = "nameInput">
 
@@ -78,10 +78,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <td><?= $character['strength']?></td>
                     <td><?= $character['defense']?></td>
                     <td>
-                        <from action="delete_character.php" method="POST">  
+                        <from action="edit_character.php" method="GET">
                             <input type="hidden" name="id" value="<?=$character['id']?>">
-                            
+                            <button type="submit">Editar</button>
                         </from>
+                        <form action="../model/delete_character.php" method="POST">
+                           <input type="hidden" name="id" value="<?= $character['id']?>">
+                           <button type="submit">Borrar</button>
+                        </form>
                     </td>
                 </tr>
             <?php endforeach; ?>    
