@@ -17,7 +17,7 @@ class Item{
 
     function save(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $stmt = $this->db->prepare("INSERT INTO characters (name, description, health, strength, defense) VALUES (:name, :description, :health, :strength, :defense)");
+            $stmt = $this->db->prepare("INSERT INTO items (name, description, type, effect) VALUES (:name, :description, :type, :effect)");
             $stmt->bindValue(':name', $this->getName());
             $stmt->bindValue(':description', $this->getDescription());
             $stmt->bindValue(':type', $this->getType());
