@@ -1,5 +1,5 @@
 <?php 
-require_once("../config/db.php");
+require_once("../../config/db.php");
 
 if ($_SERVER['REQUEST_METHOD']==='POST'){
 
@@ -12,7 +12,7 @@ try{
     $stmt->bindValue(':id',$_POST['id'], PDO::PARAM_INT);
 
     if ($stmt->execute()){    
-        header("Location: ../views/create_character.php");
+        header("Location: ./create_character.php");
         exit;
     }else{
         echo "Error al borrar";

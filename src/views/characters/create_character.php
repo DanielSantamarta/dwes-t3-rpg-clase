@@ -1,7 +1,7 @@
 <?php
 
-require_once("../config/db.php");
-require_once("../model/Character.php");
+require_once("../../config/db.php");
+require_once("../../model/Character.php");
 
 $characters =[];
 try{
@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 <body>
     <h1>Menu: </h1>
-    <?php include('partials/_menu.php') ?>
+    <?php include('../partials/_menu.php') ?>
     <h1>Crea tu personaje</h1>
     <form action = <?=$_SERVER['PHP_SELF']?> method="POST"> 
         <label for="nameInput">Nombre:</label>
@@ -82,7 +82,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <input type="hidden" name="id" value="<?=$character['id']?>">
                             <button type="submit">Editar</button>
                         </from>
-                        <form action="../model/delete_character.php" method="POST">
+                        <form action="delete_character.php" method="POST">
                            <input type="hidden" name="id" value="<?= $character['id']?>">
                            <button type="submit">Borrar</button>
                         </form>

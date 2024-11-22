@@ -6,7 +6,6 @@
     <title>Aventura</title>
 </head>
 <body>
-    <?php include("views/partials/_menu.php")?>
-    <p>Hola mundo</p>
+    <?php include("./partials/_menu.php")?>
 </body>
 </html>
