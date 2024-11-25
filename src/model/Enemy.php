@@ -3,6 +3,7 @@ class Enemy{
     protected $id;
     protected $name;
     protected $description;
+    protected $isBoss;
     protected $health;
     protected $strength;
     protected $defense;
@@ -21,9 +22,10 @@ class Enemy{
             
           
         
-            $stmt = $this->db->prepare("INSERT INTO characters (name, description, health, strength, defense) VALUES (:name, :description, :health, :strength, :defense)");
+            $stmt = $this->db->prepare("INSERT INTO enemies (name, description, isBoss, health, strength, defense) VALUES (:name, :description, :isBoss, :health, :strength, :defense)");
             $stmt->bindValue(':name', $this->getName());
             $stmt->bindValue(':description', $this->getDescription());
+            $stmt->bindValue(':isBoss', $this->getIsBoss());
             $stmt->bindValue(':health', $this->getHealth());
             $stmt->bindValue(':strength', $this->getStrength());
             $stmt->bindValue(':defense', $this->getDefense());
@@ -171,6 +173,26 @@ class Enemy{
     public function setImg($img)
     {
         $this->img = $img;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of isBoss
+     */ 
+    public function getIsBoss()
+    {
+        return $this->isBoss;
+    }
+
+    /**
+     * Set the value of isBoss
+     *
+     * @return  self
+     */ 
+    public function setIsBoss($isBoss)
+    {
+        $this->isBoss = $isBoss;
 
         return $this;
     }
