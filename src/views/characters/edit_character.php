@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $stmt->bindValue(':id',  $_POST['id']);
 
         if ($stmt->execute()){ 
-            header("Location: create_character.php"); //Esto es una puta mierda
+            header("Location: create_character.php");
             exit;
         }
     }
