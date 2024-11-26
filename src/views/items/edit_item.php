@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
     $stmt = $db->prepare("SELECT * FROM items WHERE id = :id");
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
-    $character = $stmt->fetch(PDO::FETCH_ASSOC);
+    $item = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -45,9 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Editar Objeto</title>
 </head>
 <body>
-<form action = <?=$_SERVER['PHP_SELF']?> method="POST"> 
+    <form action = <?=$_SERVER['PHP_SELF']?> method="POST"> 
+        <input type="hidden" name="id" value="<?= $item['id']?>">
         <label for="nameInput">Nombre:</label>
-        <input type = "text" name = "name" id = "nameInput">
+        <input type = "text" name = "name" id = "nameInput" value="<?= $item['name'] ?>">
 
         <label for="descriptionInput">Descripción:</label>
         <input type="text" name="description" id="descriptionInput" value="<?= $item['description'] ?>">
@@ -61,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         </select>
 
         <label for="effectInput">Effecto:</label>
-        <input type = "int" name = "effect" id = "effectInput">
+        <input type = "int" name = "effect" id = "effectInput" value="<?= $item['effect'] ?>">
 
-        <button type="submit">Actualizar Enemigo</button>
+        <button type="submit">Actualizar objeto</button>
     </form>    
 
 

@@ -76,10 +76,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <td><?= $item['type']?></td>
                     <td><?= $item['effect']?></td>
                     <td>
-                        <from action="edit_item.php" method="GET">
+                        <form action="edit_item.php" method="GET">
                             <input type="hidden" name="id" value="<?=$item['id']?>">
                             <button type="submit">Editar</button>
-                        </from>
+                        </form>
                         <form action="delete_item.php" method="POST">
                            <input type="hidden" name="id" value="<?= $item['id']?>">
                            <button type="submit">Borrar</button>

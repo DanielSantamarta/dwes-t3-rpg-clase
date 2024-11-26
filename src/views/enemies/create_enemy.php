@@ -89,10 +89,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     ?></td>
                     <td><?= $enemy['defense']?></td>
                     <td>
-                        <from action="edit_enemy.php" method="GET">
+                        <form action="edit_enemy.php" method="GET">
                             <input type="hidden" name="id" value="<?=$enemy['id']?>">
                             <button type="submit">Editar</button>
-                        </from>
+                        </form>
                         <form action="delete_enemy.php" method="POST">
                            <input type="hidden" name="id" value="<?= $enemy['id']?>">
                            <button type="submit">Borrar</button>
