@@ -6,3 +6,4 @@
         <li><a href="/views/items/create_item.php">Objetos</a></li>
         <li><a href="/views/maps/create_map.php">Mapas</a></li>
     </ul>
+</nav>

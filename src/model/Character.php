@@ -171,6 +171,20 @@ class Character{
     }
     
     }
+    
+    function update(){
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $stmt = $this->db->prepare("UPDATE characters SET (name = :name, description = :description, health = :health, strength = :strength, defense = :defense ) WHERE id = :id");
+            $stmt->bindValue(':name', $this->getName());
+            $stmt->bindValue(':description', $this->getDescription());
+            $stmt->bindValue(':health', $this->getHealth());
+            $stmt->bindValue(':strength', $this->getStrength());
+            $stmt->bindValue(':defense', $this->getDefense());
+
+            return $stmt->execute();
+        }
+    }
+    
 
     /**
      * Get the value of db

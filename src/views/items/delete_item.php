@@ -12,7 +12,7 @@ try{
     $stmt->bindValue(':id',$_POST['id'], PDO::PARAM_INT);
 
     if ($stmt->execute()){    
-        header("Location: create_items.php");
+        header("Location: create_item.php");
         exit;
     }else{
         echo "Error al borrar";
