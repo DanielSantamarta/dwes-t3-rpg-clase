@@ -3,13 +3,6 @@
 require_once("../../config/db.php");
 require_once("../../model/Item.php");
 
-$items =[];
-try{
-    $stmt = $db->query("SELECT * FROM items");
-    $items=$stmt -> fetchAll(PDO::FETCH_ASSOC);
-}catch(PDOException $e){
-    echo "Error al leer en base de datos: ". $e->getMessage();
-}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $item = new Item($db);
@@ -22,6 +15,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
 }
+
+$items =[];
+try{
+    $stmt = $db->query("SELECT * FROM items");
+    $items=$stmt -> fetchAll(PDO::FETCH_ASSOC);
+}catch(PDOException $e){
+    echo "Error al leer en base de datos: ". $e->getMessage();
+}
+
 ?>
 
 <!DOCTYPE html>

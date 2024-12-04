@@ -3,14 +3,6 @@
 require_once("../../config/db.php");
 require_once("../../model/Enemy.php");
 
-$enemies =[];
-try{
-    $stmt = $db->query("SELECT * FROM enemies");
-    $enemies=$stmt -> fetchAll(PDO::FETCH_ASSOC);
-}catch(PDOException $e){
-    echo "Error al leer en base de datos: ". $e->getMessage();
-}
-
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $enemy = new Enemy($db);
     $enemy->setName($_POST['name'])
@@ -24,6 +16,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
 }
+
+$enemies =[];
+try{
+    $stmt = $db->query("SELECT * FROM enemies");
+    $enemies=$stmt -> fetchAll(PDO::FETCH_ASSOC);
+}catch(PDOException $e){
+    echo "Error al leer en base de datos: ". $e->getMessage();
+}
+
+
 ?>
 
 <!DOCTYPE html>

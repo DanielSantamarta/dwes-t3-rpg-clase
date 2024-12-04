@@ -3,14 +3,6 @@
 require_once("../../config/db.php");
 require_once("../../model/Character.php");
 
-$characters =[];
-try{
-    $stmt = $db->query("SELECT * FROM characters");
-    $characters=$stmt -> fetchAll(PDO::FETCH_ASSOC);
-}catch(PDOException $e){
-    echo "Error al leer en base de datos: ". $e->getMessage();
-}
-
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $character = new Character($db);
     $character->setName($_POST['name'])
@@ -23,6 +15,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
 }
+
+$characters =[];
+try{
+    $stmt = $db->query("SELECT * FROM characters");
+    $characters=$stmt -> fetchAll(PDO::FETCH_ASSOC);
+}catch(PDOException $e){
+    echo "Error al leer en base de datos: ". $e->getMessage();
+}
+
+
 ?>
 
 <!DOCTYPE html>
